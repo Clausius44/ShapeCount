@@ -6,9 +6,14 @@ import os
 size = [10, 10]
 fig, ax = plt.subplots(figsize=size)
 
+imageFolder = "IMAGES"
+
+if imageFolder not in os.listdir():
+    os.mkdir(imageFolder)
+
 numberOfSquares = 15
 for square in range(1, numberOfSquares+1):
-    limitImageNum = 1000
+    limitImageNum = 25
     for imageNum in range(limitImageNum):
         vecOfCoordinates = []
         for num in range(square):
@@ -19,5 +24,5 @@ for square in range(1, numberOfSquares+1):
         plt.axis("off")
         nameToSave = f"SQUARES_{square}_IMAGE_{imageNum}.jpg"
 
-        plt.savefig(os.path.join(r"C:\Users\User\PycharmProjects\ShapeCount\IMAGES", nameToSave))
+        plt.savefig(os.path.join(r"IMAGES", nameToSave))
         ax.clear()
