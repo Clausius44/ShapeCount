@@ -33,9 +33,8 @@ def createModel(input_shape=(100, 100, 1)):
     # Usamos un optimizador con un aprendizaje controlado
     model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
-        loss='mse',  # Error cuadrático medio
-        metrics=['mae']  # Error absoluto medio (fácil de entender para humanos)
+        loss='mse',
+        metrics=['mae']
     )
 
     return model
-
