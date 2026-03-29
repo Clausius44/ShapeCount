@@ -13,7 +13,7 @@ if imageFolder not in os.listdir():
 
 numberOfSquares = 15
 for square in range(1, numberOfSquares+1):
-    limitImageNum = 25
+    limitImageNum = 5
     for imageNum in range(limitImageNum):
         vecOfCoordinates = []
         for num in range(square):
@@ -22,7 +22,8 @@ for square in range(1, numberOfSquares+1):
         ax.set_xlim(0, size[0])
         ax.set_ylim(0, size[1])
         plt.axis("off")
-        nameToSave = f"SQUARES_{square}_IMAGE_{imageNum}.jpg"
 
+        nameToSave = f"SQUARES_{square}_IMAGE_{imageNum}.jpg"
         plt.savefig(os.path.join(r"IMAGES", nameToSave))
+
         ax.clear()

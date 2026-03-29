@@ -7,7 +7,8 @@ import numpy as np
 def drawSquare(ax, vec):
 
     overlap = True
-    while overlap == True:
+    minimumArea = False
+    while overlap or not minimumArea:
         # Generate two random points for the square
         corner1 = [random.uniform(0, 10), random.uniform(0, 10)]
         corner2 = [random.uniform(0, 10), random.uniform(0, 10)]
@@ -23,8 +24,9 @@ def drawSquare(ax, vec):
         bottomLeft = [left, bottom]
         bottomRight = [right, bottom]
 
-        # Check if there is overlap with squares
+        # Check if there is overlap with squares and if the square has enough area
         overlap = checkSquareInside([topLeft, topRight, bottomLeft, bottomRight], vec)
+        minimumArea = checkSquareArea([topLeft, topRight, bottomLeft, bottomRight])
 
     # Get a random color and plot the square
     color = random.choice(colorList)
@@ -74,3 +76,21 @@ def applyConvolution(image, kernelSize):
     result = cv2.filter2D(image, -1, kernel)
 
     return result
+
+def checkSquareArea(pos, minArea=1.5):
+
+    topLeft = np.array(pos[0])
+    topRight = np.array(pos[1])
+    bottomLeft = np.array(pos[2])
+    bottomRight = np.array(pos[3])
+
+    base = np.linalg.norm((topRight - topLeft))
+    height = np.linalg.norm((bottomLeft - topLeft))
+
+    if base*height > minArea:
+        return True
+
+    else:
+        return False
+
+# if __name__ == "__main__":
